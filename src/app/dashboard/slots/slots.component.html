@@ -32,10 +32,7 @@
                         <h4><b> Source :</b></h4> {{train.trainFrom }}
                         <hr>
                         <h4><b> Stops : </b></h4>
-                        <p *ngFor="let x of train.route">
-                          {{x['via']}}
-
-                        </p>
+                        <p *ngFor="let x of train.route">{{x['via']}} </p>
                         <h4><b> Source :</b></h4> {{train.trainTo}}
                         <div class="col-md-7 mr-auto">
                         </div>

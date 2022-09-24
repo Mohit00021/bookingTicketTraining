@@ -6,6 +6,7 @@ import { Seat } from 'src/app/models/seat.model';
 import { SlotsService } from 'src/app/services/slots.service';
 import { Slots } from 'src/app/models/slots.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Trains } from 'src/app/models/trains.model';
 
 @Component({
   selector: 'app-bookslot',
@@ -13,7 +14,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./bookslot.component.css']
 })
 export class BookslotComponent implements OnInit {
-
+  trains: Trains;
   load: boolean;
   seats$: Seat[];
   slots$: Slots[];
@@ -22,6 +23,8 @@ export class BookslotComponent implements OnInit {
   //trainname = this.actRoute.snapshot.params['train_image'];
   currentDate = new Date();
   date = this.currentDate.getDate() + '-' + this.currentDate.getMonth() + '-' + this.currentDate.getFullYear()
+  trainName: string
+  
 
   @Input() bookingdetails = {
     'email': '',
@@ -44,7 +47,10 @@ export class BookslotComponent implements OnInit {
     this.load = false;
     this.getSeats();
     this.getSlotById();
-    console.log(history.state)
+    this.trainName = history.state.data[0]['train_name']
+    this.trains = history.state.data[0]
+    console.log(this.trains);
+    
   }
 
   getSeats() {
