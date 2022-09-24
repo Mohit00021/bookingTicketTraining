@@ -17,9 +17,12 @@ export class TrainsService {
 
   constructor(private _http: HttpClient) { }
 
-  getTrains(){
+  getTrains(){    
     return this._http.get<Trains[]>(this.apiUrl);
   }
+
+ 
+
 
   addTrain(train){
     return this._http.post<Boolean>(this.apiUrl+'/add', train, this.httpOptions ); 

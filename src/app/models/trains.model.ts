@@ -12,4 +12,11 @@ export class Trains{
     departureTime: string;
     arrivalTime : string;
     distanceKm : number;
+    route : string[] ;
 }
+
+// export class Via{
+//     id:number;
+//     via:string;
+//     distanceFromSource: number;
+// }

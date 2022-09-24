@@ -4,6 +4,7 @@ import { TrainsService } from 'src/app/services/trains.service';
 import { Seat } from 'src/app/models/seat.model';
 import { SeatService } from 'src/app/services/seat.service';
 import { DashboardComponent } from 'src/app/dashboard/dashboard.component';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-slots',
@@ -16,30 +17,45 @@ export class SlotsComponent implements OnInit {
   seats$: Seat[];
   sessionValue : string = "";
   slotService: any;
+  allTrains: any;
 
+   
+     
+  
   constructor(
     private trainsService: TrainsService,
     private seatService: SeatService,
-    private dashboardComponent: DashboardComponent) { }
+    private dashboardComponent: DashboardComponent,
+    private _http: HttpClient
+    ) { }
 
   ngOnInit() {
     this.dashboardComponent.checkLogin();
     this.loadTrains();
     this.loadSeat();
+    this.getRoutes();
+    
   }
 
 
   loadTrains(){
+    
     return this.trainsService.getTrains()
     .subscribe(data => this.trains$ = data)
-    console.log(this.trains$['arrival']);
-    
+
   }
-  
-  
+
+  getRoutes(){
+    return this._http.get('http://localhost:8080/trains/route').subscribe(data => this.allTrains = data['route'])
+  }
+    
 
   loadSeat(){
     return this.seatService.getSeats()
     .subscribe(data => this.seats$ = data)
   }
+
+ 
+
+  
 }

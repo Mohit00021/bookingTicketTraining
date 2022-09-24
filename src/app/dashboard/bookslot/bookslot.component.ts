@@ -18,7 +18,7 @@ export class BookslotComponent implements OnInit {
     seats$: Seat[];
     slots$: Slots[];
     trainid = this.actRoute.snapshot.params['trainid'];
-    //bannerimage = this.actRoute.snapshot.params['bannerimage'];
+    trainSource = this.actRoute.snapshot.params['trainFrom'];
     //trainname = this.actRoute.snapshot.params['train_image'];
     currentDate = new Date();
     date = this.currentDate.getDate() + '-' + this.currentDate.getMonth() + '-' + this.currentDate.getFullYear()
