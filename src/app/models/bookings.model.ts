@@ -1,4 +1,4 @@
-export class Bookings{
+export class Bookings {
     bookingid: number;
     email: string;
     seat_type: string;
@@ -10,4 +10,5 @@ export class Bookings{
     trainid: number;
     slotid: string;
     paid: number;
+
 }

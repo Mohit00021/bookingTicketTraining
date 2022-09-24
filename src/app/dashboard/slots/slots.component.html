@@ -1,7 +1,8 @@
 <div class="row mt-3  justify-content-center">
-  <div class="col-md-11 card" >
-    <div class="row " style="background: #cc3d00 radial-gradient(circle at 60% 100%,#ffa436 5%,#cc3d00 94%);color: Black;margin: 10px;padding: 10px;">
-      <div class="col-md-12 d-flex justify-content-center" >
+  <div class="col-md-11 card">
+    <div class="row "
+      style="background: #cc3d00 radial-gradient(circle at 60% 100%,#ffa436 5%,#cc3d00 94%);color: Black;margin: 10px;padding: 10px;">
+      <div class="col-md-12 d-flex justify-content-center">
         <h2>Movies</h2>
       </div>
     </div>
@@ -12,37 +13,38 @@
           <div class="col-md-12 overflow-auto" style="height: 35rem;">
             <div>
               <div *ngFor='let train of trains$' class="card">
-                <div class="card-header flex-row" >
+                <div class="card-header flex-row">
                   <div class="row">
                     <div class="col-md-8">
                       <h2><b>{{train.train_name}}</b></h2>
                     </div>
                     <div class="col-auto">
-                      <button class="button" type="button" routerLink="/dashboard/bookslot/{{train.trainid}}">
+                      <button class="button" type="button" (click)="goto2(train.trainid)">
                         Book Now
                       </button>
                     </div>
                   </div>
-                </div>             
+                </div>
                 <div>
                   <div class="card-body">
                     <div class="row">
                       <div class="col-md-7 mr-auto">
-                        <h4><b> Source :</b></h4> {{train.trainFrom }}                    
+                        <h4><b> Source :</b></h4> {{train.trainFrom }}
                         <hr>
                         <h4><b> Stops : </b></h4>
                         <p *ngFor="let x of train.route">
-                          <input type="radio" id="" name="fav_language" value="{{x['via']}}" >
-                          {{x['via']}} 
-                          
+                          {{x['via']}}
+
                         </p>
-                        <h4><b> Source :</b></h4> {{train.trainTo}} 
+                        <h4><b> Source :</b></h4> {{train.trainTo}}
                         <div class="col-md-7 mr-auto">
                         </div>
                       </div>
                       <div class="col-auto mr-auto">
-                        <br><h3><b>Arrival : </b> {{train.arrival}}</h3>
-                        <br><h4><b> Seatings :  </b></h4>
+                        <br>
+                        <h3><b>Arrival : </b> {{train.arrival}}</h3>
+                        <br>
+                        <h4><b> Seatings : </b></h4>
                         <div *ngFor='let seat of seats$'>
                           <p>{{seat.seat_type}} : Rs {{seat.cost}}</p>
                         </div>
@@ -50,14 +52,13 @@
                       <br>
                       <div class="col-auto">
                         <div class="col-auto">
-                          <img src="{{train.bannerimage}}" width="163px" height="208px"alt="error">
+                          <img src="{{train.bannerimage}}" width="163px" height="208px" alt="error">
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              
             </div>
           </div>
         </div>
@@ -65,4 +66,3 @@
     </div>
   </div>
 </div>
-

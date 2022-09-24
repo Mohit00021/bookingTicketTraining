@@ -14,62 +14,63 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class BookslotComponent implements OnInit {
 
-    load : boolean;
-    seats$: Seat[];
-    slots$: Slots[];
-    trainid = this.actRoute.snapshot.params['trainid'];
-    trainSource = this.actRoute.snapshot.params['trainFrom'];
-    //trainname = this.actRoute.snapshot.params['train_image'];
-    currentDate = new Date();
-    date = this.currentDate.getDate() + '-' + this.currentDate.getMonth() + '-' + this.currentDate.getFullYear()
-    
+  load: boolean;
+  seats$: Seat[];
+  slots$: Slots[];
+  trainid = this.actRoute.snapshot.params['trainid'];
+  trainSource = this.actRoute.snapshot.params['trainFrom'];
+  //trainname = this.actRoute.snapshot.params['train_image'];
+  currentDate = new Date();
+  date = this.currentDate.getDate() + '-' + this.currentDate.getMonth() + '-' + this.currentDate.getFullYear()
+
   @Input() bookingdetails = {
-    'email':'',
-    'trainid':'',
-    'seat_type':'',
-    'duration':0,
-    'time':'',
-    'slotid':'',
+    'email': '',
+    'trainid': '',
+    'seat_type': '',
+    'duration': 0,
+    'time': '',
+    'slotid': '',
     'date': '',
-    'seat_no':'',
+    'seat_no': '',
   }
   constructor(
-    private bookings:BookingsService, 
-    private slotsService: SlotsService, 
-    private seatService: SeatService, 
-    public actRoute :ActivatedRoute, 
+    private bookings: BookingsService,
+    private slotsService: SlotsService,
+    private seatService: SeatService,
+    public actRoute: ActivatedRoute,
     public router: Router) { }
 
   ngOnInit(): void {
     this.load = false;
     this.getSeats();
     this.getSlotById();
+    console.log(history.state)
   }
 
-  getSeats(){
+  getSeats() {
     return this.seatService.getSeats()
-    .subscribe(data => this.seats$ = data)
+      .subscribe(data => this.seats$ = data)
   }
-  getSlotById(){
+  getSlotById() {
     return this.slotsService.getSlotById(this.trainid)
-    .subscribe(data => this.slots$ = data)
+      .subscribe(data => this.slots$ = data)
   }
 
-  addBooking(){
-    if(this.bookingdetails.seat_type == '' || this.bookingdetails.slotid == '' || this.bookingdetails.duration == 0){
+  addBooking() {
+    if (this.bookingdetails.seat_type == '' || this.bookingdetails.slotid == '' || this.bookingdetails.duration == 0) {
       alert('Kindly fill all the data')
       return
-    } 
+    }
     /*if (!this.checkTime(this.bookingdetails.time)){
       alert("OOPS!! Try booking 2 hours earlier..")
       return
     }*/
     this.load = true;
     this.bookings.addBooking(this.trainid, this.bookingdetails)
-    .subscribe((data:{}) => {
-      alert('Show Booked');
-      this.router.navigate(['/dashboard/bookings'])
-    })
+      .subscribe((data: {}) => {
+        alert('Show Booked');
+        this.router.navigate(['/dashboard/bookings'])
+      })
   }
   /*checkTime(bookingTime){
 

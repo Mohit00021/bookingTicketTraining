@@ -5,6 +5,7 @@ import { Seat } from 'src/app/models/seat.model';
 import { SeatService } from 'src/app/services/seat.service';
 import { DashboardComponent } from 'src/app/dashboard/dashboard.component';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-slots',
@@ -15,47 +16,51 @@ export class SlotsComponent implements OnInit {
 
   trains$: Trains[];
   seats$: Seat[];
-  sessionValue : string = "";
+  sessionValue: string = "";
   slotService: any;
   allTrains: any;
 
-   
-     
-  
+
+  private tosend: number;
+
   constructor(
     private trainsService: TrainsService,
     private seatService: SeatService,
     private dashboardComponent: DashboardComponent,
-    private _http: HttpClient
-    ) { }
+    private _http: HttpClient,
+    private router: Router
+
+  ) { }
 
   ngOnInit() {
     this.dashboardComponent.checkLogin();
     this.loadTrains();
     this.loadSeat();
     this.getRoutes();
-    
+    this.tosend = 1000;
   }
 
 
-  loadTrains(){
-    
+  loadTrains() {
+
     return this.trainsService.getTrains()
-    .subscribe(data => this.trains$ = data)
+      .subscribe(data => this.trains$ = data)
 
   }
 
-  getRoutes(){
+  getRoutes() {
     return this._http.get('http://localhost:8080/trains/route').subscribe(data => this.allTrains = data['route'])
   }
-    
 
-  loadSeat(){
+
+  loadSeat() {
     return this.seatService.getSeats()
-    .subscribe(data => this.seats$ = data)
+      .subscribe(data => this.seats$ = data)
   }
 
- 
+  goto2(trainid: number) {
 
-  
+    this.router.navigate(['/dashboard/bookslot/' + trainid], { state: { data: this.trains$ } })
+  }
+
 }
