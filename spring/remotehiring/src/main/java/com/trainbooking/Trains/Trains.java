@@ -49,6 +49,9 @@ public class Trains {
 	@OneToMany(fetch=FetchType.LAZY)
 	@JoinColumn(name = "TRAIN_ROUTE_ID")
 	private List<Route> route;
+
+	@Column
+	private double pirceByKm;
 	
 	
 	public Trains() {

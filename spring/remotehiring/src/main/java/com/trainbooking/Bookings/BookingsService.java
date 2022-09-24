@@ -1,10 +1,14 @@
 package com.trainbooking.Bookings;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.TimeZone;
+import java.time.LocalTime;
+import java.util.*;
 
+import com.trainbooking.Routes.Route;
+import com.trainbooking.Seat.Seat;
+import com.trainbooking.Trains.Trains;
+import com.trainbooking.Trains.TrainsRepository;
+import com.trainbooking.Users.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +21,11 @@ import com.trainbooking.Seat.SeatService;
 public class BookingsService {
 	
 	@Autowired
-	private BookingsRepository repo;
+	private BookingsRepository bookingsRepository;
 	@Autowired
 	private SlotsService slotservice;
-	
+	@Autowired
+	private TrainsRepository trainsRepository;
 	@Autowired
 	private SeatService seatservice;
 	
@@ -28,46 +33,72 @@ public class BookingsService {
 
 	@Autowired
 	private MailService mailservice;
+	@Autowired
+	private UsersRepository usersRepository;
 	
 	public Bookings add(Bookings booking) {
-		
-		Bookings currentBooking =  repo.save(booking);	
-//		mailservice.sendEmail(currentBooking);
-		slotservice.updateSlot(booking);
+		Trains train = trainsRepository.findById(booking.getTrainid()).get();
+		Bookings bookings = new Bookings();
+		//Users user = this.usersRepository.findById(bookings.getEmail()).get();
+		bookings.setEmail(bookings.getEmail());
+		bookings.setBookingTime(LocalTime.now());
+			bookings.setPasengerNames(bookings.getPasengerNames());
+			bookings.setArrivalDate(train.getArrival().toString());
+			bookings.setDepartDate(booking.getDepartDate());
+			bookings.setArrivalTime(train.getArrivalTime().toString());
+			bookings.setDepartTime(booking.getDepartTime());
+			bookings.setSeat_type(booking.getSeat_type());
+			bookings.setTrainFrom(booking.getTrainFrom());
+			bookings.setTrainTo(booking.getTrainTo());
+			bookings.setEmail(booking.getEmail());
+			bookings.setTrainid(booking.getTrainid());
+			bookings.setJurneyDistance(calculateDistance(booking));
+			bookings.setPrice(seatservice.getSeatCost(booking.getSeat_type()) + (bookings.getJurneyDistance()*train.getPirceByKm()));
+			bookings.setPrice(bookings.getPrice()*booking.getNoOfSeats());
+			this.bookingsRepository.save(bookings);
+//			bookings.setBookings(bookings);
+//			this.ticketRepository.save(bookings);
 
-		//int duration = repo.findById(currentBooking.bookingid).get().getDuration();
-
-		int duration = currentBooking.getDuration();
-		//Bookings currBooking = repo.findById(currentBooking.bookingid).get();
-		Bookings currBooking = currentBooking;
-		currBooking.setDuration(duration);
-		
-		int seatCost =  seatservice.getSeatCost(currBooking.getSeat_type());
-
-		//String trainname = trainservice.getTrain_name(currBooking.getTrainid());
-		
-		int cost = duration*seatCost;
-		
-		currBooking.setCost(String.valueOf(cost));
-
-		//currBooking.setTrain_name(trainname);
-
-		repo.save(currBooking);
-
-		return currentBooking;
+		return bookings;
 	}
+
+	private int calculateDistance(Bookings bookings) {
+		int distance=0;
+		Trains train = trainsRepository.findById(bookings.getTrainid()).get();
+		Map<String,Integer> map = new HashMap<String,Integer>();
+		map.put(train.getTrainFrom(),1);
+		map.put(train.getTrainTo(),train.getDistanceKm());
+		if(!train.getRoute().isEmpty()){
+			for (Route i : train.getRoute()){
+				String key = i.getVia();
+				Integer value = i.getDistanceFromSource();
+				map.put(key,value);
+			}
+		}
+		String d = bookings.getTrainTo();
+		String s = bookings.getTrainFrom();
+		int destination = map.get(d);
+		int source = map.get(s);
+		distance = (destination-source);
+		System.out.println(destination-source);
+		return (Math.abs(distance));
+	}
+
+
+
+
 		
 	public List<Bookings> listAll(){
-		return repo.findAll();
+		return bookingsRepository.findAll();
 	}
 	
 	public List<Bookings> listByUsers(String email){
-		return repo.listByUsers(email);
+		return bookingsRepository.listByUsers(email);
 	}
 	
 	public boolean endBooking(Integer bookingid) {
 		
-		repo.endBooking(bookingid);
+		bookingsRepository.endBooking(bookingid);
 		
 		/*String[] time1 = getTime();
 		String[] date1 = getDate();
@@ -83,20 +114,16 @@ public class BookingsService {
 		String[] time2 = splittime(bookingTime);
 		
 		//int duration = getDuration(time1,time2,date1,date2);*/
-		
-		int duration = repo.findById(bookingid).get().getDuration();
 
-		Bookings currentBooking = repo.findById(bookingid).get();
-		
-		currentBooking.setDuration(duration);
-		
+
+		Bookings currentBooking = bookingsRepository.findById(bookingid).get();
+
 		int seatCost =  seatservice.getSeatCost(currentBooking.getSeat_type());
+
 		
-		int cost = duration*seatCost;
+
 		
-		currentBooking.setCost(String.valueOf(cost));
-		
-		repo.save(currentBooking);
+		bookingsRepository.save(currentBooking);
 		slotservice.rollbackSlot(currentBooking.getSlotid());
 		
 		return true;

@@ -58,7 +58,7 @@ import { AddTrainComponent } from './admin/admin-dashboard/add-train/add-train.c
     HttpClientModule,
     FormsModule,
     NoopAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,MaterialModule
   ],
   providers: [TrainsService, BookingsService, SeatService, UsersService, SlotsService, AdminService],
   bootstrap: [AppComponent]
