@@ -30,11 +30,8 @@ export class BookslotComponent implements OnInit {
     'email': '',
     'trainid': '',
     'seat_type': '',
-    'duration': 0,
-    'time': '',
-    'slotid': '',
     'date': '',
-    'seat_no': '',
+    'numberOfTickets': 0,
   }
   constructor(
     private bookings: BookingsService,
@@ -63,7 +60,7 @@ export class BookslotComponent implements OnInit {
   }
 
   addBooking() {
-    if (this.bookingdetails.seat_type == '' || this.bookingdetails.slotid == '' || this.bookingdetails.duration == 0) {
+    if (this.bookingdetails.seat_type == '' || this.bookingdetails.date == '' || this.bookingdetails.numberOfTickets == 0) {
       alert('Kindly fill all the data')
       return
     }
