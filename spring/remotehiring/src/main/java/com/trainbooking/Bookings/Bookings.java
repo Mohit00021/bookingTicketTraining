@@ -1,25 +1,36 @@
 package com.trainbooking.Bookings;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
+import javax.persistence.*;
 
 
 @Entity
 public class Bookings {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
+	@Column
 	private Integer bookingid;
+	@Column
 	private String email;
+	@Column
 	private String seat_type;
+	@Column
 	private String  seat_no;
+	@Column
 	private String date;
+	@Column
 	private String time;
+	@Column
 	private Integer duration;
+	@Column
 	private String cost = "0";
+	@Column
 	private Integer trainid;
+	@Column
 	private String slotid;
+	@Column
 	private Integer paid = 0;
+	@Column
 	private String train_name = "";
 	
 	public Bookings() {

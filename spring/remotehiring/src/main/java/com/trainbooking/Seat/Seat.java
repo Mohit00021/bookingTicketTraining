@@ -8,10 +8,11 @@ import javax.persistence.*;
 public class Seat {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column
 	private Integer seatid;
-
+	@Column
 	private String seat_type;
-
+	@Column
 	private String cost;
 		
 	public Seat() {

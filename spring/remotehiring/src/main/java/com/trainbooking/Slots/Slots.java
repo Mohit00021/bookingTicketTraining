@@ -1,17 +1,25 @@
 package com.trainbooking.Slots;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 
 @Entity
 public class Slots {
+	@Column
 	@Id private String slotid;
+	@Column
 	private Integer trainid;
+	@Column
 	private String slotno;
+	@Column
 	private Integer status = 0;
+	@Column
 	private String time = "0";
+	@Column
 	private Integer duration = 0;
+
 	
 	public Slots() {
 	}

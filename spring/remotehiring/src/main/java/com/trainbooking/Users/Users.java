@@ -1,14 +1,20 @@
 package com.trainbooking.Users;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
 public class Users {
+	@Column
 	@Id private String email;
+	@Column
 	private String fullname;
+	@Column
 	private String mobno;
+	@Column
 	private String password;
+
 
 	public Users() {
 	}
