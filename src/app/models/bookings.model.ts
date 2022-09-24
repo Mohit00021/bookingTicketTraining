@@ -1,13 +1,13 @@
 export class Bookings{
     bookingid: number;
     email: string;
-    vehicle_type: string;
-    vehicle_no: string;
+    seat_type: string;
+    seat_no: string;
     date: string;
     time: string;
     duration: number;
     cost: string;
-    locationid: number;
+    trainid: number;
     slotid: string;
     paid: number;
 }

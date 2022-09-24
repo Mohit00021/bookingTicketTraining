@@ -14,22 +14,22 @@ import { SlotsComponent } from './dashboard/slots/slots.component';
 import { BookingsComponent } from './dashboard/bookings/bookings.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BookslotComponent } from './dashboard/bookslot/bookslot.component';
-
 import { AdminService} from './services/admin.service';
-import { LocationsService } from './services/locations.service';
 import { BookingsService } from './services/bookings.service';
-import { VehicleService } from './services/vehicle.service';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderLoginComponent } from './header-login/header-login.component';
 import { UsersService } from './services/users.service';
 import { AdminComponent } from './admin/admin.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
-import { AddLocationComponent } from './admin/admin-dashboard/add-location/add-location.component';
 import { AddSlotComponent } from './admin/admin-dashboard/add-slot/add-slot.component';
 import { AllbookingsComponent } from './admin/admin-dashboard/allbookings/allbookings.component';
 import { SlotsService } from './services/slots.service';
-import { AddVehicleComponent } from './admin/admin-dashboard/add-vehicle/add-vehicle.component';
+import { TrainsService } from './services/trains.service';
+import { SeatService } from './services/seat.service';
+import { AddSeatComponent } from './admin/admin-dashboard/add-seat/add-seat.component';
+import { AddTrainComponent } from './admin/admin-dashboard/add-train/add-train.component';
+
 
 @NgModule({
   declarations: [
@@ -47,10 +47,10 @@ import { AddVehicleComponent } from './admin/admin-dashboard/add-vehicle/add-veh
     AdminComponent,
     AdminLoginComponent,
     AdminDashboardComponent,
-    AddLocationComponent,
+    AddTrainComponent,
     AddSlotComponent,
     AllbookingsComponent,
-    AddVehicleComponent
+    AddSeatComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +60,7 @@ import { AddVehicleComponent } from './admin/admin-dashboard/add-vehicle/add-veh
     NoopAnimationsModule,
     ReactiveFormsModule
   ],
-  providers: [LocationsService, BookingsService, VehicleService, UsersService, SlotsService, AdminService],
+  providers: [TrainsService, BookingsService, SeatService, UsersService, SlotsService, AdminService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

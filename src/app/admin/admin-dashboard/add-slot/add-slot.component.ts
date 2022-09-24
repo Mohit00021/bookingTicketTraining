@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SlotsService } from 'src/app/services/slots.service';
 import { Slots } from 'src/app/models/slots.model';
-import { LocationsService } from 'src/app/services/locations.service';
-import { Locations } from 'src/app/models/locations.model';
+import { TrainsService } from 'src/app/services/trains.service';
+import { Trains } from 'src/app/models/trains.model';
 
 @Component({
   selector: 'app-add-slot',
@@ -13,17 +13,17 @@ import { Locations } from 'src/app/models/locations.model';
 export class AddSlotComponent implements OnInit {
   
   slots$: Slots[];
-  locations$: Locations[];
+  trains$: Trains[];
   form = new FormGroup({
-    locationid : new FormControl('', Validators.required),
+    trainid : new FormControl('', Validators.required),
     slotid : new FormControl('', Validators.required),
     slotno : new FormControl('', Validators.required)
   })
-  constructor(private slotService: SlotsService, private locationService : LocationsService) { }
+  constructor(private slotService: SlotsService, private trainService : TrainsService) { }
 
   ngOnInit(): void {
     this.getAllSlots();
-    this.loadLocations();
+    this.loadTrains();
   }
   onSubmit(){
     this.slotService.addSlot(JSON.stringify(this.form.value))
@@ -42,8 +42,8 @@ export class AddSlotComponent implements OnInit {
     .subscribe(data => this.slots$ = data)
   }
 
-  loadLocations(){
-    return this.locationService.getLocations()
-    .subscribe(data => this.locations$ = data)
+  loadTrains(){
+    return this.trainService.getTrains()
+    .subscribe(data => this.trains$ = data)
   }
 }

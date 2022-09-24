@@ -49,23 +49,23 @@ INSERT INTO `admin` (`adminid`, `password`) VALUES
 CREATE TABLE `bookings` (
   `bookingid` int(11) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `vehicle_type` varchar(50) NOT NULL,
-  `vehicle_no` varchar(50) NOT NULL,
-  `locationid` int(8) DEFAULT NULL,
+  `seat_type` varchar(50) NOT NULL,
+  `seat_no` varchar(50) NOT NULL,
+  `trainid` int(8) DEFAULT NULL,
   `slotid` varchar(20) NOT NULL,
   `date` varchar(30) NOT NULL,
   `time` varchar(20) NOT NULL,
   `duration` varchar(10) NOT NULL,
   `cost` varchar(100) NOT NULL,
   `paid` int(1) NOT NULL DEFAULT 0,
-  `location_name` varchar(200) NOT NULL
+  `train_name` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `bookings`
 --
 
-INSERT INTO `bookings` (`bookingid`, `email`, `vehicle_type`, `vehicle_no`, `locationid`, `slotid`, `date`, `time`, `duration`, `cost`, `paid`, `location_name`) VALUES
+INSERT INTO `bookings` (`bookingid`, `email`, `seat_type`, `seat_no`, `trainid`, `slotid`, `date`, `time`, `duration`, `cost`, `paid`, `train_name`) VALUES
 (66, 'karthicbe2405@gmail.com', 'PLATINUM', '', 2, '2 1 9:00 AM', '', '2021-02-28', '5', '1000', 1, ''),
 (69, 'Karthickkumar@gmail.com', 'GOLD', '', 2, '2 2 12:30 PM', '', '2021-03-01', '2', '300', 1, ''),
 (70, 'Karthi@gmail.com', 'Elite', '', 2, '2 3 9:30 PM', '', '2021-03-03', '2', '600', 1, ''),
@@ -74,12 +74,12 @@ INSERT INTO `bookings` (`bookingid`, `email`, `vehicle_type`, `vehicle_no`, `loc
 -- --------------------------------------------------------
 
 --
--- Table structure for table `locations`
+-- Table structure for table `trains`
 --
 
-CREATE TABLE `locations` (
-  `locationid` int(8) UNSIGNED NOT NULL,
-  `location_name` varchar(80) NOT NULL,
+CREATE TABLE `trains` (
+  `trainid` int(8) UNSIGNED NOT NULL,
+  `train_name` varchar(80) NOT NULL,
   `area` varchar(100) NOT NULL,
   `slots` int(8) NOT NULL,
   `cast` varchar(2000) NOT NULL,
@@ -87,10 +87,10 @@ CREATE TABLE `locations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `locations`
+-- Dumping data for table `trains`
 --
 
-INSERT INTO `locations` (`locationid`, `location_name`, `area`, `slots`, `cast`, `bannerimage`) VALUES
+INSERT INTO `trains` (`trainid`, `train_name`, `area`, `slots`, `cast`, `bannerimage`) VALUES
 (1, 'KANNUM KANNUM KOLLAYADITHAL', 'FUN CINEMAS', 3, 'A carefree youngster`s life takes an interesting turn after he meets the girl of his dreams.', 'https://upload.wikimedia.org/wikipedia/en/8/86/Kannum_Kannum_Kollaiyadithaal.jpg'),
 (2, 'KAITHI', 'THE SPI CINEMAS', 4, 'Dilli, an ex-convict, endeavours to meet his daughter for the first time after leaving prison.', 'https://i.pinimg.com/originals/93/ef/c8/93efc876eb6ea57c2f28837eec455713.jpg'),
 (3, 'REMO', 'SAVEETHA CINEMAS', 1, 'Remo is a Tamil romantic comedy movie directed by Bhagyaraj Kannan. The film stars Sivakarthikeyan and Keerthy Suresh in the leading roles.', 'https://www.filmibeat.com/ph-big/2016/09/remo-movie-poster_147523194960.jpg'),
@@ -105,7 +105,7 @@ INSERT INTO `locations` (`locationid`, `location_name`, `area`, `slots`, `cast`,
 
 CREATE TABLE `slots` (
   `slotid` varchar(20) NOT NULL,
-  `locationid` int(8) NOT NULL,
+  `trainid` int(8) NOT NULL,
   `slotno` varchar(20) NOT NULL,
   `status` int(8) NOT NULL,
   `time` varchar(20) NOT NULL,
@@ -116,7 +116,7 @@ CREATE TABLE `slots` (
 -- Dumping data for table `slots`
 --
 
-INSERT INTO `slots` (`slotid`, `locationid`, `slotno`, `status`, `time`, `duration`) VALUES
+INSERT INTO `slots` (`slotid`, `trainid`, `slotno`, `status`, `time`, `duration`) VALUES
 ('1 1 10:30AM', 1, '10:30 AM', 0, '0', 0),
 ('1 2 2:30 PM', 1, '2:30 PM', 0, '0', 0),
 ('1 3 6:00 PM', 1, '6:00 PM', 0, '0', 0),
@@ -152,20 +152,20 @@ INSERT INTO `users` (`email`, `fullname`, `mobno`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `vehicle`
+-- Table structure for table `seat`
 --
 
-CREATE TABLE `vehicle` (
-  `vehicleid` int(8) NOT NULL,
-  `vehicle_type` varchar(50) NOT NULL,
+CREATE TABLE `seat` (
+  `seatid` int(8) NOT NULL,
+  `seat_type` varchar(50) NOT NULL,
   `cost` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `vehicle`
+-- Dumping data for table `seat`
 --
 
-INSERT INTO `vehicle` (`vehicleid`, `vehicle_type`, `cost`) VALUES
+INSERT INTO `seat` (`seatid`, `seat_type`, `cost`) VALUES
 (4, 'GOLD', '150'),
 (5, 'PLATINUM', '200'),
 (7, 'Elite', '300'),
@@ -189,10 +189,10 @@ ALTER TABLE `bookings`
   ADD KEY `fk_email` (`email`);
 
 --
--- Indexes for table `locations`
+-- Indexes for table `trains`
 --
-ALTER TABLE `locations`
-  ADD PRIMARY KEY (`locationid`);
+ALTER TABLE `trains`
+  ADD PRIMARY KEY (`trainid`);
 
 --
 -- Indexes for table `slots`
@@ -207,10 +207,10 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`email`);
 
 --
--- Indexes for table `vehicle`
+-- Indexes for table `seat`
 --
-ALTER TABLE `vehicle`
-  ADD PRIMARY KEY (`vehicleid`);
+ALTER TABLE `seat`
+  ADD PRIMARY KEY (`seatid`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -223,16 +223,16 @@ ALTER TABLE `bookings`
   MODIFY `bookingid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
--- AUTO_INCREMENT for table `locations`
+-- AUTO_INCREMENT for table `trains`
 --
-ALTER TABLE `locations`
-  MODIFY `locationid` int(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+ALTER TABLE `trains`
+  MODIFY `trainid` int(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
--- AUTO_INCREMENT for table `vehicle`
+-- AUTO_INCREMENT for table `seat`
 --
-ALTER TABLE `vehicle`
-  MODIFY `vehicleid` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+ALTER TABLE `seat`
+  MODIFY `seatid` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables

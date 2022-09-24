@@ -16,8 +16,8 @@ export class SlotsService {
 
   constructor(private _http: HttpClient) { }
 
-  getSlotById(locationid){
-    return this._http.get<Slots[]>(this.apiUrl+'/slots/getbyid/'+locationid);
+  getSlotById(trainid){
+    return this._http.get<Slots[]>(this.apiUrl+'/slots/getbyid/'+trainid);
   }
   getAllSlots(){
     return this._http.get<Slots[]>(this.apiUrl+'/slots');

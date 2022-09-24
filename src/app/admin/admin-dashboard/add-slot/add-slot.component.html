@@ -16,8 +16,8 @@
                                 <div class="m-1">
                                     <div class="form-group">
                                         <label ><h3 class="font-weight-bold m-0">Select Movie:</h3></label>
-                                        <select class="form-control" formControlName="locationid" [ngClass]="{ 'is-invalid':form.get('locationid').touched && form.get('locationid').invalid}" name="locationid">
-                                          <option *ngFor='let location of locations$' value="{{location.locationid}}">{{location.locationid}}. {{location.location_name}}</option>
+                                        <select class="form-control" formControlName="trainid" [ngClass]="{ 'is-invalid':form.get('trainid').touched && form.get('trainid').invalid}" name="trainid">
+                                          <option *ngFor='let train of trains$' value="{{train.trainid}}">{{train.trainid}}. {{train.train_name}}</option>
                                         </select>                                    
                                         <div class="invalid-feedback">
                                             <div>
@@ -75,7 +75,7 @@
                             <hr class="m-1">
                             <div class="row p-2" *ngFor='let slot of slots$'>
                                 <div class="col-2" >
-                                    {{slot.locationid}}
+                                    {{slot.trainid}}
                                 </div>
                                 <div class="col-4">
                                     {{slot.slotid}}

@@ -27,7 +27,7 @@ export class BookingsService {
   }
 
   addBooking(id,bookings):Observable<Bookings>{
-    bookings.locationid = id;
+    bookings.trainid = id;
     bookings.email = sessionStorage.getItem('email');
     console.log(bookings);
     return this._http.post<Bookings>(this.apiUrl+'/bookings/add', JSON.stringify(bookings), this.httpOptions ); 

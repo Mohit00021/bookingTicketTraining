@@ -17,19 +17,19 @@
             <div class="col-md-12">
                 <div class="row mb-3">
                     <div class="col-md-12">
-                        <h4>ID: {{locationid}}</h4>
+                        <h4>ID: {{trainid}}</h4>
                         <form class="card" name="bookingForm">
-                            <!-- select vehicle    -->
+                            <!-- select seat    -->
                             
                             <!-- end vechicle select -->
 
-                            <!-- vehicle number enter -->
+                            <!-- seat number enter -->
                             <!--<div class="col-md-12 m-2">
-                                    <input class="input" type="text" [(ngModel)]="bookingdetails.vehicle_no" name="vehicle_no" placeholder="Vehicle Number" autocomplete="off" required>
+                                    <input class="input" type="text" [(ngModel)]="bookingdetails.seat_no" name="seat_no" placeholder="Seat Number" autocomplete="off" required>
 
                                     <small>FORMAT: TN-01-AA-1111</small>
                             </div>-->
-                            <!-- end vehicle number -->
+                            <!-- end seat number -->
 
                             <!-- select date and time [(ngModel)]="bookingdetails.time" -->
                             <div class="col-md-12 mt-2 mb-3">
@@ -170,9 +170,9 @@
 
                             <div class="col-md-12 m-2">
                                 <div class="form-group">
-                                    <label for="vehicle_type">Select Seating</label>
-                                    <select class="form-control"  [(ngModel)]="bookingdetails.vehicle_type" name="vehicle_type" id="vehicle_type">
-                                            <option *ngFor='let vehicle of vehicles$' value="{{vehicle.vehicle_type}}">{{vehicle.vehicle_type}}</option>                                  
+                                    <label for="seat_type">Select Seating</label>
+                                    <select class="form-control"  [(ngModel)]="bookingdetails.seat_type" name="seat_type" id="seat_type">
+                                            <option *ngFor='let seat of seats$' value="{{seat.seat_type}}">{{seat.seat_type}}</option>                                  
                                     </select>
                                 </div>
                             </div>

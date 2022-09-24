@@ -10,10 +10,10 @@ import { BookslotComponent } from './dashboard/bookslot/bookslot.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
-import { AddLocationComponent } from './admin/admin-dashboard/add-location/add-location.component';
+import { AddTrainComponent } from './admin/admin-dashboard/add-train/add-train.component';
 import { AddSlotComponent } from './admin/admin-dashboard/add-slot/add-slot.component';
 import { AllbookingsComponent } from './admin/admin-dashboard/allbookings/allbookings.component';
-import { AddVehicleComponent } from './admin/admin-dashboard/add-vehicle/add-vehicle.component';
+import { AddSeatComponent } from './admin/admin-dashboard/add-seat/add-seat.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -23,7 +23,7 @@ const routes: Routes = [
   children:[
     {path:'',component:SlotsComponent},
     {path:'bookings',component:BookingsComponent},
-    {path:'bookslot/:locationid',component:BookslotComponent}
+    {path:'bookslot/:trainid',component:BookslotComponent}
   ]},
   {path:'admin',component: AdminComponent,
   children:[
@@ -31,10 +31,10 @@ const routes: Routes = [
   ]},
   {path:'admin-dashboard',component: AdminDashboardComponent,
   children:[
-    {path:'',component: AddLocationComponent},
+    {path:'',component: AddTrainComponent},
     {path:'add-slot', component: AddSlotComponent},
     {path:'allbookings', component: AllbookingsComponent},
-    {path: 'add-vehicle', component: AddVehicleComponent}
+    {path: 'add-seat', component: AddSeatComponent}
   ]}
 ];
 

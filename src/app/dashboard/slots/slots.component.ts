@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Locations } from '../../models/locations.model';
-import { LocationsService } from 'src/app/services/locations.service';
-import { Vehicle } from 'src/app/models/vehicle.model';
-import { VehicleService } from 'src/app/services/vehicle.service';
+import { Trains } from '../../models/trains.model';
+import { TrainsService } from 'src/app/services/trains.service';
+import { Seat } from 'src/app/models/seat.model';
+import { SeatService } from 'src/app/services/seat.service';
 import { DashboardComponent } from 'src/app/dashboard/dashboard.component';
 
 @Component({
@@ -12,30 +12,30 @@ import { DashboardComponent } from 'src/app/dashboard/dashboard.component';
 })
 export class SlotsComponent implements OnInit {
 
-  locations$: Locations[];
-  vehicles$: Vehicle[];
+  trains$: Trains[];
+  seats$: Seat[];
   sessionValue : string = "";
   slotService: any;
 
   constructor(
-    private locationsService: LocationsService,
-    private vehicleService: VehicleService,
+    private trainsService: TrainsService,
+    private seatService: SeatService,
     private dashboardComponent: DashboardComponent) { }
 
   ngOnInit() {
     this.dashboardComponent.checkLogin();
-    this.loadLocations();
-    this.loadVehicle();
+    this.loadTrains();
+    this.loadSeat();
   }
 
 
-  loadLocations(){
-    return this.locationsService.getLocations()
-    .subscribe(data => this.locations$ = data)
+  loadTrains(){
+    return this.trainsService.getTrains()
+    .subscribe(data => this.trains$ = data)
   }
 
-  loadVehicle(){
-    return this.vehicleService.getVehicles()
-    .subscribe(data => this.vehicles$ = data)
+  loadSeat(){
+    return this.seatService.getSeats()
+    .subscribe(data => this.seats$ = data)
   }
 }

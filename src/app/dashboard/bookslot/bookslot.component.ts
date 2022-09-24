@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Directive, HostListener } from '@angular/core';
 import { BookingsService } from 'src/app/services/bookings.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { VehicleService } from 'src/app/services/vehicle.service';
-import { Vehicle } from 'src/app/models/vehicle.model';
+import { SeatService } from 'src/app/services/seat.service';
+import { Seat } from 'src/app/models/seat.model';
 import { SlotsService } from 'src/app/services/slots.service';
 import { Slots } from 'src/app/models/slots.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -15,48 +15,48 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class BookslotComponent implements OnInit {
 
     load : boolean;
-    vehicles$: Vehicle[];
+    seats$: Seat[];
     slots$: Slots[];
-    locationid = this.actRoute.snapshot.params['locationid'];
+    trainid = this.actRoute.snapshot.params['trainid'];
     //bannerimage = this.actRoute.snapshot.params['bannerimage'];
-    //locationname = this.actRoute.snapshot.params['location_image'];
+    //trainname = this.actRoute.snapshot.params['train_image'];
     currentDate = new Date();
     date = this.currentDate.getDate() + '-' + this.currentDate.getMonth() + '-' + this.currentDate.getFullYear()
     
   @Input() bookingdetails = {
     'email':'',
-    'locationid':'',
-    'vehicle_type':'',
+    'trainid':'',
+    'seat_type':'',
     'duration':0,
     'time':'',
     'slotid':'',
     'date': '',
-    'vehicle_no':'',
+    'seat_no':'',
   }
   constructor(
     private bookings:BookingsService, 
     private slotsService: SlotsService, 
-    private vehicleService: VehicleService, 
+    private seatService: SeatService, 
     public actRoute :ActivatedRoute, 
     public router: Router) { }
 
   ngOnInit(): void {
     this.load = false;
-    this.getVehicles();
+    this.getSeats();
     this.getSlotById();
   }
 
-  getVehicles(){
-    return this.vehicleService.getVehicles()
-    .subscribe(data => this.vehicles$ = data)
+  getSeats(){
+    return this.seatService.getSeats()
+    .subscribe(data => this.seats$ = data)
   }
   getSlotById(){
-    return this.slotsService.getSlotById(this.locationid)
+    return this.slotsService.getSlotById(this.trainid)
     .subscribe(data => this.slots$ = data)
   }
 
   addBooking(){
-    if(this.bookingdetails.vehicle_type == '' || this.bookingdetails.slotid == '' || this.bookingdetails.duration == 0){
+    if(this.bookingdetails.seat_type == '' || this.bookingdetails.slotid == '' || this.bookingdetails.duration == 0){
       alert('Kindly fill all the data')
       return
     } 
@@ -65,7 +65,7 @@ export class BookslotComponent implements OnInit {
       return
     }*/
     this.load = true;
-    this.bookings.addBooking(this.locationid, this.bookingdetails)
+    this.bookings.addBooking(this.trainid, this.bookingdetails)
     .subscribe((data:{}) => {
       alert('Show Booked');
       this.router.navigate(['/dashboard/bookings'])

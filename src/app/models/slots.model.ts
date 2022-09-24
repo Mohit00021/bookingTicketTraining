@@ -1,6 +1,6 @@
 export class Slots{
     slotid: string;
-    locationid: number;
+    trainid: number;
     slotno: string;
     status:number;
     duration:number;

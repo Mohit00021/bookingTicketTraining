@@ -11,14 +11,14 @@
         <div class="row mb-3">
           <div class="col-md-12 overflow-auto" style="height: 35rem;">
             <div>
-              <div *ngFor='let location of locations$' class="card">
+              <div *ngFor='let train of trains$' class="card">
                 <div class="card-header flex-row" >
                   <div class="row">
                     <div class="col-md-8">
-                      <h2><b>{{location.location_name}}</b></h2>
+                      <h2><b>{{train.train_name}}</b></h2>
                     </div>
                     <div class="col-auto">
-                      <button class="button" type="button" routerLink="/dashboard/bookslot/{{location.locationid}}">
+                      <button class="button" type="button" routerLink="/dashboard/bookslot/{{train.trainid}}">
                         Book Now
                       </button>
                     </div>
@@ -28,23 +28,23 @@
                   <div class="card-body">
                     <div class="row">
                       <div class="col-md-7 mr-auto">
-                        <h4><b> Location :</b></h4> <p>{{location.area}}</p>
+                        <h4><b> Train :</b></h4> <p>{{train.area}}</p>
                         <hr>
-                        <h4><b> About : </b></h4> <p>{{location.cast}}</p>
+                        <h4><b> About : </b></h4> <p>{{train.cast}}</p>
                         <div class="col-md-7 mr-auto">
                         </div>
                       </div>
                       <div class="col-auto mr-auto">
-                        <br><h3><b>Shows :</b> {{location.slots}}</h3>
+                        <br><h3><b>Shows :</b> {{train.slots}}</h3>
                         <br><h4><b> Seatings :  </b></h4>
-                        <div *ngFor='let vehicle of vehicles$'>
-                          <p>{{vehicle.vehicle_type}} : Rs {{vehicle.cost}}</p>
+                        <div *ngFor='let seat of seats$'>
+                          <p>{{seat.seat_type}} : Rs {{seat.cost}}</p>
                         </div>
                       </div>
                       <br>
                       <div class="col-auto">
                         <div class="col-auto">
-                          <img src="{{location.bannerimage}}" width="163px" height="208px"alt="error">
+                          <img src="{{train.bannerimage}}" width="163px" height="208px"alt="error">
                         </div>
                       </div>
                     </div>
