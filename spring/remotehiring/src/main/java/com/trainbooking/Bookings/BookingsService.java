@@ -42,7 +42,7 @@ public class BookingsService {
 		//Users user = this.usersRepository.findById(bookings.getEmail()).get();
 		bookings.setEmail(bookings.getEmail());
 		bookings.setBookingTime(LocalTime.now());
-			bookings.setPasengerNames(bookings.getPasengerNames());
+			//bookings.setPasengerNames(bookings.getPasengerNames());
 			bookings.setArrivalDate(train.getArrival().toString());
 			bookings.setDepartDate(booking.getDepartDate());
 			bookings.setArrivalTime(train.getArrivalTime().toString());

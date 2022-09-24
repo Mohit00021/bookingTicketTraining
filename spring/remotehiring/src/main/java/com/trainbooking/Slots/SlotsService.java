@@ -48,9 +48,7 @@ public class SlotsService {
 		return repo.slotById(trainid);
 	}
 	
-	public void updateSlot(Bookings booking) {
-		repo.updateSlot(1, booking.getTime(), booking.getDuration(),booking.getSlotid());
-	}
+
 	
 	public void rollbackSlot(String slotid) {
 		repo.rollbackSlot(slotid);

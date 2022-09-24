@@ -33,8 +33,6 @@ public class Bookings {
 	@Column
 	private LocalTime bookingTime;
 
-	@Column
-	private List<String> pasengerNames;
 
 	@Column (name="PRICE")
 	private double price;
