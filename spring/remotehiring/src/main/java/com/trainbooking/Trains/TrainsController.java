@@ -20,7 +20,9 @@ public class TrainsController {
 
 	@GetMapping("/trains")
 	public List<Trains> list(){
+		System.out.println(trainsService.listAll()+"IDHAR HU ME BABY");
 		return trainsService.listAll();
+
 	}
 
 	@PostMapping("/trains/add")

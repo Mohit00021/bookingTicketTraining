@@ -5,4 +5,11 @@ export class Trains{
     slots: number;
     bannerimage: string;
     cast : string;
+    arrival : string;
+    trainFrom : string;
+    trainTo : string;
+    departure : string;
+    departureTime: string;
+    arrivalTime : string;
+    distanceKm : number;
 }

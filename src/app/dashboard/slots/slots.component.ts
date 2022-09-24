@@ -32,7 +32,11 @@ export class SlotsComponent implements OnInit {
   loadTrains(){
     return this.trainsService.getTrains()
     .subscribe(data => this.trains$ = data)
+    console.log(this.trains$['arrival']);
+    
   }
+  
+  
 
   loadSeat(){
     return this.seatService.getSeats()
