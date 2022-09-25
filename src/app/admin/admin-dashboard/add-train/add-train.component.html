@@ -1,7 +1,8 @@
 <div class="row mt-3  justify-content-center">
-    <div class="col-md-11 card" >
-        <div class="row " style="background: #cc3d00 radial-gradient(circle at 60% 100%,#ffa436 5%,#cc3d00 94%);color: black;margin: 10px;padding: 10px;">
-            <div class="col-md-12 d-flex justify-content-center" >
+    <div class="col-md-11 card">
+        <div class="row "
+            style="background: #cc3d00 radial-gradient(circle at 60% 100%,#ffa436 5%,#cc3d00 94%);color: black;margin: 10px;padding: 10px;">
+            <div class="col-md-12 d-flex justify-content-center">
                 <h2>Add Movie</h2>
             </div>
         </div>
@@ -10,20 +11,67 @@
             <div class="col-md-12">
                 <div class="row mb-3">
                     <div class="col-md-12">
-                        <form name="form" [formGroup] = "form" (ngSubmit) = "form.valid && onSubmit()" class="card m-2">
+                        <form name="form" [formGroup]="form" (ngSubmit)="form.valid && onSubmit()" class="card m-2">
                             <div class="col-md-12">
                                 <div class="m-1">
-                                    <input class="input form-control" formControlName="train_name" [ngClass]="{ 'is-invalid':form.get('train_name').touched && form.get('train_name').invalid}" name="train_name" type="text" placeholder="Movie Name"  autocomplete="off" required>
+                                    <input class="input form-control" formControlName="train_name"
+                                        [ngClass]="{ 'is-invalid':form.get('train_name').touched && form.get('train_name').invalid}"
+                                        name="train_name" type="text" placeholder="Train Name" autocomplete="off"
+                                        required>
+                                    <input class="input form-control" formControlName="arrival"
+                                        [ngClass]="{ 'is-invalid':form.get('arrival').touched && form.get('arrival').invalid}"
+                                        name="arrival" type="text" placeholder="Arrival Date" autocomplete="off"
+                                        required>
+                                    <input class="input form-control" formControlName="arrivalTime"
+                                        [ngClass]="{ 'is-invalid':form.get('arrivalTime').touched && form.get('arrivalTime').invalid}"
+                                        name="arrivalTime" type="text" placeholder="Arrival Time" autocomplete="off"
+                                        required>
+                                    <input class="input form-control" formControlName="departure"
+                                        [ngClass]="{ 'is-invalid':form.get('departure').touched && form.get('departure').invalid}"
+                                        name="departure" type="text" placeholder="Departure Date" autocomplete="off"
+                                        required>
+                                    <input class="input form-control" formControlName="departureTime"
+                                        [ngClass]="{ 'is-invalid':form.get('departureTime').touched && form.get('departureTime').invalid}"
+                                        name="departureTime" type="text" placeholder="Departure Time" autocomplete="off"
+                                        required>
+                                    <input class="input form-control" formControlName="trainFrom"
+                                        [ngClass]="{ 'is-invalid':form.get('trainFrom').touched && form.get('trainFrom').invalid}"
+                                        name="trainFrom" type="text" placeholder="TrainFrom PLACE" autocomplete="off"
+                                        required>
+                                    <input class="input form-control" formControlName="trainTo"
+                                        [ngClass]="{ 'is-invalid':form.get('trainTo').touched && form.get('trainTo').invalid}"
+                                        name="trainTo" type="text" placeholder="TrainTo PLACE" autocomplete="off"
+                                        required>
+                                    <input class="input form-control" formControlName="distanceKm"
+                                        [ngClass]="{ 'is-invalid':form.get('distanceKm').touched && form.get('distanceKm').invalid}"
+                                        name="distanceKm" type="number" placeholder="Distance from Source"
+                                        autocomplete="off" required>
+                                    <input class="input form-control" formControlName="priceByKm"
+                                        [ngClass]="{ 'is-invalid':form.get('priceByKm').touched && form.get('priceByKm').invalid}"
+                                        name="priceByKm" type="number" placeholder="Price PER KM" autocomplete="off"
+                                        required>
+                                    <input class="input form-control" formControlName="area"
+                                        [ngClass]="{ 'is-invalid':form.get('area').touched && form.get('area').invalid}"
+                                        name="area" type="text" placeholder="Train Type" required>
+
+                                    <!-- <input formControlName='via' type="text" class="form-control"
+                                        placeholder="Enter Route" />
+                                    <input formControlName='kmDistance' type="text" class="form-control"
+                                        placeholder="Enter Distance Km" /> -->
+
                                     <div class="invalid-feedback">
                                         <div>
                                             This Field is required!!
                                         </div>
                                     </div>
-                                </div> 
+                                </div>
                             </div>
-                            <div class="col-md-12 ">
+
+                            <!-- <div class="col-md-12 ">
                                 <div class="m-1">
-                                    <input class="input form-control" formControlName="area" [ngClass]="{ 'is-invalid':form.get('area').touched && form.get('area').invalid}" name="area" type="text" placeholder="Theatre Name" required>
+                                    <input class="input form-control" formControlName="area"
+                                        [ngClass]="{ 'is-invalid':form.get('area').touched && form.get('area').invalid}"
+                                        name="area" type="text" placeholder="Theatre Name" required>
                                     <div class="invalid-feedback">
                                         <div>
                                             This Field is required!!
@@ -33,15 +81,17 @@
                             </div>
                             <div class="col-md-12 ">
                                 <div class="m-1">
-                                    <input class="input form-control" formControlName="cast" [ngClass]="{ 'is-invalid':form.get('cast').touched && form.get('cast').invalid}" name="area" type="text" placeholder="About the Movie and Cast" required>
+                                    <input class="input form-control" formControlName="cast"
+                                        [ngClass]="{ 'is-invalid':form.get('cast').touched && form.get('cast').invalid}"
+                                        name="area" type="text" placeholder="About the Movie and Cast" required>
                                     <div class="invalid-feedback">
                                         <div>
                                             This Field is required!
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-12 ">
+                            </div> -->
+                            <!-- <div class="col-md-12 ">
                                 <div class="m-1">
                                     <input class="input form-control" formControlName="bannerimage" [ngClass]="{ 'is-invalid':form.get('bannerimage').touched && form.get('bannerimage').invalid}" name="bannerimage" type="text" placeholder="Paste the Poster Image URL" required>
                                     <div class="invalid-feedback">
@@ -50,10 +100,10 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-md-12 mt-2 mb-5 ">
                                 <div class="m-1 mt-4">
-                                    <button class="button" type="submit" [disabled]="!form.valid">Add</button>
+                                    <button class="button" [disabled]="!form.valid">Add</button>
                                 </div>
                             </div>
                         </form>
@@ -61,19 +111,19 @@
                         <div class="m-2">
                             <h3 class="font-weight-bold">Movies Available:</h3>
                         </div>
-                        
+
                         <div class="card m-2">
                             <div class="row p-2">
                                 <div class="col">
-                                    <b>Movie</b>
+                                    <b>Train</b>
                                 </div>
                                 <div class="col">
-                                   <b>Theatre</b>
+                                    <b>Type</b>
                                 </div>
                             </div>
                             <hr class="m-1">
                             <div class="row p-2" *ngFor='let train of trains$'>
-                                <div class="col" >
+                                <div class="col">
                                     {{train.train_name}}
                                 </div>
                                 <div class="col">

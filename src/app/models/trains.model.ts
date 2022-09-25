@@ -12,6 +12,8 @@ export class Trains {
     departureTime: string;
     arrivalTime: string;
     distanceKm: number;
+    priceByKm: number;
     route: string[];
 
 }
+

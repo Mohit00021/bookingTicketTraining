@@ -1,7 +1,8 @@
 <div class="row mt-3  justify-content-center">
-    <div class="col-md-11 card" >
-        <div class="row " style="background: #cc3d00 radial-gradient(circle at 60% 100%,#ffa436 5%,#cc3d00 94%);color: black;margin: 10px;padding: 10px;">
-            <div class="col-md-12 d-flex justify-content-center" >
+    <div class="col-md-11 card">
+        <div class="row "
+            style="background: #cc3d00 radial-gradient(circle at 60% 100%,#ffa436 5%,#cc3d00 94%);color: black;margin: 10px;padding: 10px;">
+            <div class="col-md-12 d-flex justify-content-center">
                 <h2>Add Shows</h2>
             </div>
         </div>
@@ -10,38 +11,48 @@
             <div class="col-md-12">
                 <div class="row mb-3">
                     <div class="col-md-12">
-                        <form name="form" [formGroup] = "form" (ngSubmit) = "form.valid && onSubmit()" class="card m-2">
+                        <form name="form" [formGroup]="form" (ngSubmit)="form.valid && onSubmit()" class="card m-2">
 
                             <div class="col-md-12">
                                 <div class="m-1">
                                     <div class="form-group">
-                                        <label ><h3 class="font-weight-bold m-0">Select Movie:</h3></label>
-                                        <select class="form-control" formControlName="trainid" [ngClass]="{ 'is-invalid':form.get('trainid').touched && form.get('trainid').invalid}" name="trainid">
-                                          <option *ngFor='let train of trains$' value="{{train.trainid}}">{{train.trainid}}. {{train.train_name}}</option>
-                                        </select>                                    
+                                        <label>
+                                            <h3 class="font-weight-bold m-0">Select Movie:</h3>
+                                        </label>
+                                        <select class="form-control" formControlName="trainid"
+                                            [ngClass]="{ 'is-invalid':form.get('trainid').touched && form.get('trainid').invalid}"
+                                            name="trainid">
+                                            <option *ngFor='let train of trains$' value="{{train.trainid}}">
+                                                {{train.trainid}}. {{train.train_name}}</option>
+                                        </select>
                                         <div class="invalid-feedback">
                                             <div>
                                                 This Field is required!!
                                             </div>
                                         </div>
                                     </div>
-                                </div> 
+                                </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="m-1">
-                                    <input class="input form-control" formControlName="slotid" [ngClass]="{ 'is-invalid':form.get('slotid').touched && form.get('slotid').invalid}" name="slotid" type="text" placeholder="Show ID"  autocomplete="off" required>
+                                    <input class="input form-control" formControlName="slotid"
+                                        [ngClass]="{ 'is-invalid':form.get('slotid').touched && form.get('slotid').invalid}"
+                                        name="slotid" type="date" placeholder="Departure Date" autocomplete="off"
+                                        required>
                                     <!--<small>Format: showid + show + show no</small>-->
                                     <div class="invalid-feedback">
                                         <div>
                                             This Field is required!!
                                         </div>
                                     </div>
-                                </div> 
+                                </div>
                             </div>
                             <div class="col-md-12 ">
                                 <div class="m-1">
-                                    <input class="input form-control" formControlName="slotno" [ngClass]="{ 'is-invalid':form.get('slotno').touched && form.get('slotno').invalid}" name="slotno" type="text" placeholder="Show Time" required>
+                                    <input class="input form-control" formControlName="slotno"
+                                        [ngClass]="{ 'is-invalid':form.get('slotno').touched && form.get('slotno').invalid}"
+                                        name="slotno" type="date" placeholder="Arrival Date" required>
                                     <!--<small>Format: Slot + slotno</small>-->
                                     <div class="invalid-feedback">
                                         <div>
@@ -66,15 +77,15 @@
                                     <b>Movie ID</b>
                                 </div>
                                 <div class="col-4">
-                                   <b>Show ID</b>
+                                    <b>Show ID</b>
                                 </div>
                                 <div class="col-4">
                                     <b>Show Time</b>
-                                 </div>
+                                </div>
                             </div>
                             <hr class="m-1">
                             <div class="row p-2" *ngFor='let slot of slots$'>
-                                <div class="col-2" >
+                                <div class="col-2">
                                     {{slot.trainid}}
                                 </div>
                                 <div class="col-4">

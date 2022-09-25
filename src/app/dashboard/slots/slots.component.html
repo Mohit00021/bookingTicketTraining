@@ -29,29 +29,35 @@
                   <div class="card-body">
                     <div class="row">
                       <div class="col-md-7 mr-auto">
-                        <h4><b> Source :</b></h4> {{train.trainFrom }}
+                        <h4><b> Source : </b>{{train.trainFrom }}</h4>
                         <hr>
-                        <h4><b> Stops : </b></h4>
-                        <p *ngFor="let x of train.route">{{x['via']}} </p>
-                        <h4><b> Source :</b></h4> {{train.trainTo}}
+                        <h4><b> Destination :</b> {{train.trainTo}}</h4>
+                        <hr>
+                        <h4><b> Stops : </b>
+                          <label *ngFor="let x of train.route"> {{x['via']}} , </label>
+                          <label>{{train.trainTo}}</label>
+                        </h4>
                         <div class="col-md-7 mr-auto">
                         </div>
                       </div>
                       <div class="col-auto mr-auto">
-                        <br>
+                        <h3><b>Departure : </b> {{train.departure}}</h3>
+
+                        <hr>
                         <h3><b>Arrival : </b> {{train.arrival}}</h3>
-                        <br>
-                        <h4><b> Seatings : </b></h4>
+                        <hr>
+                        <!-- <h4><b> Seatings : </b></h4>
                         <div *ngFor='let seat of seats$'>
                           <p>{{seat.seat_type}} : Rs {{seat.cost}}</p>
-                        </div>
+                        </div> -->
+
                       </div>
                       <br>
-                      <div class="col-auto">
+                      <!-- <div class="col-auto">
                         <div class="col-auto">
                           <img src="{{train.bannerimage}}" width="163px" height="208px" alt="error">
                         </div>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                 </div>

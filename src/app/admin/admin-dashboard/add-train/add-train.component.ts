@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { TrainsService } from 'src/app/services/trains.service';
 import { Trains } from 'src/app/models/trains.model';
 
@@ -11,34 +11,51 @@ import { Trains } from 'src/app/models/trains.model';
 export class AddTrainComponent implements OnInit {
 
   form = new FormGroup({
-    train_name : new FormControl('', Validators.required),
-    area : new FormControl('', Validators.required),
-    cast : new FormControl('', Validators.required),
-    bannerimage : new FormControl('', Validators.required)
+    train_name: new FormControl('', Validators.required),
+    arrival: new FormControl('', Validators.required),
+    departure: new FormControl('', Validators.required),
+    trainFrom: new FormControl('', Validators.required),
+    trainTo: new FormControl('', Validators.required),
+    arrivalTime: new FormControl('', Validators.required),
+    departureTime: new FormControl('', Validators.required),
+    distanceKm: new FormControl('', Validators.required),
+    priceByKm: new FormControl('', Validators.required),
+    area: new FormControl('', Validators.required),
+    route: new FormControl('', Validators.required)
   })
-  
-  constructor(private trainService: TrainsService) { }
 
-  trains$ : Trains[];
+
+  constructor(private trainService: TrainsService, private fb: FormBuilder) { }
+
+  trains$: Trains[];
 
   ngOnInit(): void {
     this.loadTrains();
+
   }
 
-   onSubmit(){
+  onSubmit() {
     this.trainService.addTrain(JSON.stringify(this.form.value))
-    .subscribe((data => {
-      if(data == true){
-        alert("Movie Added")
-      }
-      else{
-        alert('Something went wrong')
-      }
-    }))
-   }
+      .subscribe((data => {
+        if (data == true) {
+          alert("Train Added")
+        }
+        else {
+          alert('Something went wrong')
+        }
+      }))
+  }
 
-   loadTrains(){
+  loadTrains() {
     return this.trainService.getTrains()
-    .subscribe(data => this.trains$ = data)
+      .subscribe(data => this.trains$ = data)
+  }
+
+  createTicket(): FormGroup {
+
+    return this.fb.group({
+      name: [null, Validators.required],
+      age: [null, Validators.required]
+    })
   }
 }
