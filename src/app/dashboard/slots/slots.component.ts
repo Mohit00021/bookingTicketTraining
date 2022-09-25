@@ -59,8 +59,9 @@ export class SlotsComponent implements OnInit {
   }
 
   goto2(trainid: number) {
-
-    this.router.navigate(['/dashboard/bookslot/' + trainid], { state: { data: this.trains$ } })
+    
+    // this.router.navigate([], { state: { data: this.trains$ } })
+    this.router.navigateByUrl('/dashboard/bookslot/'+trainid,{ state: { data: this.trains$ } } );
   }
 
 }
