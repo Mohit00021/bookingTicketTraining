@@ -1,4 +1,4 @@
-package com.example.TrainBooking.dto;
+package com.trainbooking.Routes;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

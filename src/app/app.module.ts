@@ -50,7 +50,7 @@ import { AddTrainComponent } from './admin/admin-dashboard/add-train/add-train.c
     AddTrainComponent,
     AddSlotComponent,
     AllbookingsComponent,
-    AddSeatComponent
+    AddSeatComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,7 +58,8 @@ import { AddTrainComponent } from './admin/admin-dashboard/add-train/add-train.c
     HttpClientModule,
     FormsModule,
     NoopAnimationsModule,
-    ReactiveFormsModule,MaterialModule
+    ReactiveFormsModule,
+  
   ],
   providers: [TrainsService, BookingsService, SeatService, UsersService, SlotsService, AdminService],
   bootstrap: [AppComponent]

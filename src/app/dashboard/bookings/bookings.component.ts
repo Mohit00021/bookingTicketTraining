@@ -20,12 +20,17 @@ export class BookingsComponent implements OnInit {
   ngOnInit() {
     this.checkLogin();
     this.getBookingById();
+    console.log(this.bookings$);
     
   }
 
   getBookingById(){
     return this.bookingsService.getBookings(this.email$)
-    .subscribe(data => {this.bookings$ = data, this.checkBookingFn();})
+    .subscribe(data => {this.bookings$ = data, this.checkBookingFn();
+      console.log(this.bookings$);
+    })
+    
+    
   }
 
   endBooking(bookingid){

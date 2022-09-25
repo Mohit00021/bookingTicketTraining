@@ -21,7 +21,6 @@ export class AddTrainComponent implements OnInit {
     distanceKm: new FormControl('', Validators.required),
     priceByKm: new FormControl('', Validators.required),
     area: new FormControl('', Validators.required),
-    route: new FormControl('', Validators.required)
   })
 
 
@@ -57,10 +56,6 @@ export class AddTrainComponent implements OnInit {
       name: [null, Validators.required],
       age: [null, Validators.required]
     })
-  }
-
-  addRoute(x: number) {
-
   }
 
 

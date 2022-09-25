@@ -20,7 +20,7 @@ public class TrainsController {
 
 	@GetMapping("/trains")
 	public List<Trains> list(){
-		System.out.println(trainsService.listAll()+"IDHAR HU ME BABY");
+//		System.out.println(trainsService.listAll());
 		return trainsService.listAll();
 
 	}

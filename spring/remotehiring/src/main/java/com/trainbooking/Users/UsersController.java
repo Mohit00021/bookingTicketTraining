@@ -75,7 +75,7 @@ public class UsersController {
 	public ResponseEntity<Users> update(@RequestBody Users users, @PathVariable String email) {
 		try {
 			Users existUser = service.get(email); 
-			System.out.print(existUser);
+			//System.out.print(existUser);
 			service.save(users);
 			return new ResponseEntity<Users>(HttpStatus.OK);
 		}

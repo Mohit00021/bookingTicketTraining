@@ -16,10 +16,14 @@
                                     <div class="card-header" id="headingTwo">
                                         <div class="row">
                                             <div class="col-md-3">
-                                                <h3><b>Train :</b> {{booking.trainid}}</h3>
-                                            </div>
+                                                <h3><b>Train :</b> {{booking.train_name}}</h3>
+                                            
+                                            <label> <b> {{booking.trainFrom}} ==> &nbsp;</b></label>
+                                            <label> <b> {{booking.trainTo}}</b></label></div>
+
                                             <div class="col-md-7">
-                                                <h3><b>Date :</b> {{booking.time}}</h3>
+                                                <h3><b>Date :</b> {{booking.departDate}}</h3>
+                                                <label> <b> Booking ID : {{booking.bookingid}}</b></label>
                                             </div>
                                         </div>
                                     </div>
@@ -27,11 +31,11 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-auto mr-auto">
-                                                  <b>Show Time : </b> {{booking.slotid}} <br> 
+                                                  <b>Departure Time : </b> {{booking.departTime}} <br> 
                                                   <b>Seating Type :</b> {{booking.seat_type}} <br> 
-                                                  <b>Count :</b> {{booking.duration}}<br> 
+                                                  <b>No. Seats :</b> {{booking.numberOfSeats}}<br> 
                                                   <div *ngIf="booking.paid != 0 || booking.paid == 0">
-                                                    <b>Cost :</b> {{booking.cost}} Rs
+                                                    <b>Cost :</b> {{booking.price}} Rs
                                                   </div>
                                                 </div>
                                                 <div class="col-auto" *ngIf='booking.paid == 0'>

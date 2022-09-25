@@ -1,11 +1,13 @@
 package com.trainbooking.Trains;
 
-import com.example.TrainBooking.dto.RouteDto;
+//import com.example.TrainBooking.dto.RouteDto;
+import com.trainbooking.Routes.RouteDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+
 import java.util.List;
 
 @AllArgsConstructor
@@ -18,8 +20,8 @@ public class TrainDto {
     private String trainTo;
     private LocalDate departure;
     private LocalDate arrival;
-    private LocalDate departureTime;
-    private LocalDate arrivalTime;
+    private String departureTime;
+    private String arrivalTime;
     private int capacity;
     private List<RouteDto> routeDto;
 }

@@ -23,8 +23,8 @@ public class Bookings {
 	private String seat_type;
 	@Column
 	private Integer trainid;
-	@Column
-	private String slotid;
+//	@Column
+//	private String slotid;
 	@Column
 	private Integer paid = 0;
 	@Column
@@ -38,7 +38,7 @@ public class Bookings {
 	private double price;
 
 	@Column
-	private int noOfSeats;
+	private int numberOfSeats;
 
 	@Column(name="DEPART_DATE", nullable=false)
 	private String departDate;
@@ -58,7 +58,7 @@ public class Bookings {
 	@Column(length = 40, nullable=false)
 	private String trainTo;
 
-	@Column
+	@Column(nullable = false)
 	private int jurneyDistance;
 	
 	public Bookings() {

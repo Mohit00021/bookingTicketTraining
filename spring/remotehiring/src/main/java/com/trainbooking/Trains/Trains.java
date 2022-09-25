@@ -16,6 +16,7 @@ public class Trains {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer trainid;
+	@Column
 	private String train_name;
 	private Integer slots = 0;
 	private String area;
@@ -35,13 +36,13 @@ public class Trains {
 	private LocalDate arrival;
 
 	@Column
-	private LocalDate departureTime;
+	private String departureTime;
 
 	@Column
-	private LocalDate arrivalTime;
+	private String arrivalTime;
 
 	@Column(name ="distanceKm" )
-	private int distanceKm;
+	private int distanceKm = 0;
 
 	@Column(name="CAPACITY")
 	private int capacity;

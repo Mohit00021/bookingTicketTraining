@@ -8,8 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 public interface BookingsRepository extends JpaRepository<Bookings, Integer>{
+@Query("select b from Bookings b where b.email = ?1 and b.jurneyDistance<> null")
+	List<Bookings> findAllByEmail(String email);
+
 	@Query("Select b from Bookings b where email = ?1")
-	List<Bookings> listByUsers(String email);
+	List<Bookings> getByEmail(String email);
 	
 	@Modifying
 	@Transactional

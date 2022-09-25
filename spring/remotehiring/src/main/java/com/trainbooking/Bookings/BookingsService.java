@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.*;
 
+import com.trainbooking.Response.ResponseDto;
 import com.trainbooking.Routes.Route;
 import com.trainbooking.Seat.Seat;
 import com.trainbooking.Trains.Trains;
@@ -16,6 +17,7 @@ import com.trainbooking.Trains.TrainsService;
 import com.trainbooking.Mail.MailService;
 import com.trainbooking.Slots.SlotsService;
 import com.trainbooking.Seat.SeatService;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class BookingsService {
@@ -35,18 +37,18 @@ public class BookingsService {
 	private MailService mailservice;
 	@Autowired
 	private UsersRepository usersRepository;
-	
+	@Transactional
 	public Bookings add(Bookings booking) {
 		Trains train = trainsRepository.findById(booking.getTrainid()).get();
 		Bookings bookings = new Bookings();
 		//Users user = this.usersRepository.findById(bookings.getEmail()).get();
-		bookings.setEmail(bookings.getEmail());
+		bookings.setNumberOfSeats(booking.getNumberOfSeats());
+		bookings.setTrain_name(train.getTrain_name());
 		bookings.setBookingTime(LocalTime.now());
-			//bookings.setPasengerNames(bookings.getPasengerNames());
 			bookings.setArrivalDate(train.getArrival().toString());
 			bookings.setDepartDate(booking.getDepartDate());
 			bookings.setArrivalTime(train.getArrivalTime().toString());
-			bookings.setDepartTime(booking.getDepartTime());
+			bookings.setDepartTime(train.getDepartureTime().toString());
 			bookings.setSeat_type(booking.getSeat_type());
 			bookings.setTrainFrom(booking.getTrainFrom());
 			bookings.setTrainTo(booking.getTrainTo());
@@ -54,11 +56,9 @@ public class BookingsService {
 			bookings.setTrainid(booking.getTrainid());
 			bookings.setJurneyDistance(calculateDistance(booking));
 			bookings.setPrice(seatservice.getSeatCost(booking.getSeat_type()) + (bookings.getJurneyDistance()*train.getPirceByKm()));
-			bookings.setPrice(bookings.getPrice()*booking.getNoOfSeats());
-			this.bookingsRepository.save(bookings);
-//			bookings.setBookings(bookings);
-//			this.ticketRepository.save(bookings);
-
+			bookings.setPrice(bookings.getPrice()*booking.getNumberOfSeats());
+		System.out.println(bookings.getTrain_name()+"Ppointer");
+			bookingsRepository.save(bookings);
 		return bookings;
 	}
 
@@ -84,85 +84,28 @@ public class BookingsService {
 		return (Math.abs(distance));
 	}
 
-
-
-
-		
+	public double getTicketPrice(Bookings booking){
+		System.out.println(booking.getTrainid());
+		Trains trains = trainsRepository.findById(booking.getTrainid()).get();
+		int distance = calculateDistance(booking);
+		double price = (seatservice.getSeatCost(booking.getSeat_type()) + (distance*trains.getPirceByKm()))*booking.getNumberOfSeats();
+		return price ;
+	}
 	public List<Bookings> listAll(){
 		return bookingsRepository.findAll();
 	}
 	
 	public List<Bookings> listByUsers(String email){
-		return bookingsRepository.listByUsers(email);
+		return bookingsRepository.findAllByEmail(email);
 	}
 	
 	public boolean endBooking(Integer bookingid) {
-		
-		bookingsRepository.endBooking(bookingid);
-		
-		/*String[] time1 = getTime();
-		String[] date1 = getDate();
-		
-		
-		
-		String bookingTime = repo.findById(bookingid).get().getTime();
-		
-		String bookingDate = repo.findById(bookingid).get().getDate();
-		
-		String[] date2 = splitDate(bookingDate);
-		
-		String[] time2 = splittime(bookingTime);
-		
-		//int duration = getDuration(time1,time2,date1,date2);*/
 
-
-		Bookings currentBooking = bookingsRepository.findById(bookingid).get();
-
-		int seatCost =  seatservice.getSeatCost(currentBooking.getSeat_type());
-
-		
-
-		
-		bookingsRepository.save(currentBooking);
-		slotservice.rollbackSlot(currentBooking.getSlotid());
-		
+		Bookings bookings = this.bookingsRepository.findById(bookingid).get();
+		bookings.setPaid(1);
+		this.bookingsRepository.save(bookings);
 		return true;
+
 	}
-	
-	public String[] getDate() {
-		SimpleDateFormat sd = new SimpleDateFormat("dd-MM-yyyy");
-        Date date = new Date();
-        sd.setTimeZone(TimeZone.getTimeZone("IST"));
-        String time = sd.format(date);
-        String[] datearr = time.split("-");
-        return (datearr);
-	}
-	
-	public String[] getTime() {
-		SimpleDateFormat sd = new SimpleDateFormat("HH:mm");
-        Date date = new Date();
-        sd.setTimeZone(TimeZone.getTimeZone("IST"));
-        String time = sd.format(date);
-        String[] timearr = time.split(":");
-        return (timearr);
-	}
-	
-	public String[] splitDate(String date) {
-		return date.split("-");
-	}
-	
-	public String[] splittime(String time) {
-		return  time.split(":");
-	}
-	
-	public int getDuration(String[] time1,String[] time2, String[] date1, String[] date2) {
-		//int d1 = Integer.parseInt(date1[0]);
-		//int d2 = Integer.parseInt(date2[0]);
-		//int t1 = Integer.parseInt(time1[0]);
-		//int t2 = Integer.parseInt(time2[0]);
-		//int time = Math.abs(d1-d2) * 24;
-		
-		//return Math.abs(t1-t2) + time;
-		return 10;
-	}
+
 }

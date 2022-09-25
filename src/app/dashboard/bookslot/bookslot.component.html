@@ -25,68 +25,56 @@
                             <label class="form-label"> ==> {{trains.trainTo}}</label>
                             </div>
                         </div>
-                        <!-- <h4>Source : {{}}</h4>> -->
+                       
                         <form class="card" name="bookingForm">
-                            <!-- select seat    -->
+
                             
-                            <!-- end vechicle select -->
 
-                            <!-- seat number enter -->
-                            <!--<div class="col-md-12 m-2">
-                                    <input class="input" type="text" [(ngModel)]="bookingdetails.seat_no" name="seat_no" placeholder="Seat Number" autocomplete="off" required>
-
-                                    <small>FORMAT: TN-01-AA-1111</small>
-                            </div>-->
-                            <!-- end seat number -->
-
-                            <!-- select date and time [(ngModel)]="bookingdetails.time" -->
                             <div class="col-md-12 mt-2 mb-3">
+                                <label><b>Select Source</b></label>
+                                <select [(ngModel)]="bookingdetails.trainFrom" name="trainFrom" id ="trainFrom">                            
+                                    <option *ngFor="let item of sourceRouteOptions" [ngValue]="item">{{item}}</option>
+                                  </select>
+                                  {{selectedSource}}
+                                  
+
+                                  <label><b>Select Destination</b></label>
+                                  <select [(ngModel)]="bookingdetails.trainTo" name = "trainTo" id = "trainTo">                            
+                                      <option *ngFor="let item of destinationRouteOptions" [ngValue]="item">{{item}}</option>
+                                    </select>
+                                    {{selectedDestination}}
+
                                 <div class="row m-2">
                                     <div>
-                                        Select Date : <input type="date" id="date" min="2021-02-27" max="2021-03-24" [(ngModel)]="bookingdetails.date" name="date">
-                                        <!--<br>
-                                        <small>NOTE: Book 2 hours earlier</small>-->
+                                        Select Date : <input type="date" id="departDate" min="2022-09-28" max="2022-11-30" [(ngModel)]="bookingdetails.departDate" name="departDate">
+                               
                                     </div>            
                                 </div>
                             </div>
                             
                             <div class="col-md-12 mb-3 ml-2">
                                 <p>Enter the Number of Tickets : </p>
-                                <input class="input mt-0" name="numberOfTickets" id="numberOfTickets" type="number" min="1" max="24" [(ngModel)]="bookingdetails.numberOfTickets" id="duration" placeholder="No Of Tickets" autocomplete="off"  required>
+                                <input class="input mt-0" typye="number" name="numberOfTickets" id="numberOfTickets" min="1" max="24" [(ngModel)]="bookingdetails.numberOfSeats" >
                             </div>
-                            <!-- end hours    -->
-                            
-                                  <!--<p class="text">
-                                    You have selected <span id="count">0</span> seats for a price of $<span
-                                      id="price"
-                                      >0</span
-                                    >
-                                  </p>-->
-                            
-
-
                             <div class="col-md-12 m-2">
                                 <div class="form-group">
                                     <label for="seat_type">Select Seating</label>
-                                    <select class="form-control"  [(ngModel)]="bookingdetails.seat_type" name="seat_type" id="seat_type">
+                                    <select class="form-control"  [(ngModel)]="bookingdetails.seat_type" name="seat_type" id="seat_type" (change)="validateOptions()">
                                             <option *ngFor='let seat of seats$' value="{{seat.seat_type}}">{{seat.seat_type}}</option>                                  
                                     </select>
                                 </div>
                             </div>
-                            <!-- book button    -->
+                 
                             <div class="col-md-12 mt-3 mb-5">
                                 <div class="m-1 mt-2">
                                     <div class="row">
-                                        <div class="col-2">
-                                            <input type="reset" class="button" value="Reset">
-                                        </div>
                                         <div class="col">
-                                            <button class="button"  (click)='addBooking()'>Book Show</button>
+                                            <button (click)="addBooking()" class="btn btn-primary btn-block">Pay and Book</button>
                                         </div>
                                     </div>                                    
                                 </div>
                             </div>
-                            <!-- end book button -->
+                     
                         </form>
 
                     </div>

@@ -33,6 +33,15 @@ export class BookingsService {
     return this._http.post<Bookings>(this.apiUrl+'/bookings/add', JSON.stringify(bookings), this.httpOptions ); 
   }
 
+  getPrice(id,bookings):Observable<Bookings>{
+    console.log("asdasd"+bookings.numberOfSeats);
+    
+    bookings.trainid = id;
+    bookings.email = sessionStorage.getItem('email');
+    console.log(bookings);
+    return this._http.post<Bookings>(this.apiUrl+'/bookings/price',JSON.stringify(bookings),this.httpOptions ); 
+  }
+
   endBooking(bookingid){
     return this._http.get<Boolean>(this.apiUrl+'/bookings/endBooking/'+bookingid);
   }
