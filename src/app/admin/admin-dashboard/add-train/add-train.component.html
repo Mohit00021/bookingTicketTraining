@@ -3,7 +3,7 @@
         <div class="row "
             style="background: #cc3d00 radial-gradient(circle at 60% 100%,#ffa436 5%,#cc3d00 94%);color: black;margin: 10px;padding: 10px;">
             <div class="col-md-12 d-flex justify-content-center">
-                <h2>Add Movie</h2>
+                <h2>Add Train</h2>
             </div>
         </div>
         <hr>
@@ -53,6 +53,26 @@
                                     <input class="input form-control" formControlName="area"
                                         [ngClass]="{ 'is-invalid':form.get('area').touched && form.get('area').invalid}"
                                         name="area" type="text" placeholder="Train Type" required>
+                                    <div>
+                                        <input class="input" formControlName="route"
+                                            [ngClass]="{ 'is-invalid':form.get('route').touched && form.get('route').invalid}"
+                                            name="area" type="text" placeholder="ADD Route" required>
+                                        <input class="input" formControlName="routeDist"
+                                            [ngClass]="{ 'is-invalid':form.get('routeDist').touched && form.get('routeDist').invalid}"
+                                            name="routeDist" type="text" placeholder="distance Route to Source"
+                                            required>
+                                        <div class="col-md-12 mt-2 mb-5 ">
+                                            <div class="m-1 mt-4">
+                                                <button class="button" id="demo" (click)="addRoute(4)">Add
+                                                    Route</button>
+                                            </div>
+                                        </div>
+                                        <ul id="thelist" class="list-group">
+                                            <li class="list-group-item"> </li>
+
+                                        </ul>
+
+                                    </div>
 
                                     <!-- <input formControlName='via' type="text" class="form-control"
                                         placeholder="Enter Route" />

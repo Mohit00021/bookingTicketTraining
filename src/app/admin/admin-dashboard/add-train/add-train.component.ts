@@ -25,13 +25,13 @@ export class AddTrainComponent implements OnInit {
   })
 
 
+
   constructor(private trainService: TrainsService, private fb: FormBuilder) { }
 
   trains$: Trains[];
 
   ngOnInit(): void {
     this.loadTrains();
-
   }
 
   onSubmit() {
@@ -58,4 +58,10 @@ export class AddTrainComponent implements OnInit {
       age: [null, Validators.required]
     })
   }
+
+  addRoute(x: number) {
+
+  }
+
+
 }

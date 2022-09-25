@@ -1,4 +1,4 @@
-.button{
+.button {
     margin-left: 7px;
     margin-right: 7px;
     border: none;
@@ -10,17 +10,17 @@
     border: 1PX SOLID #FFDC5A;
     background-color: #FFDC5A;
 }
-.button:hover{
+
+.button:hover {
     color: black;
     border: 1PX SOLID #FFDC5A;
     background-color: #ffa436;
 }
-.navbar{
-    background: #cc3d00 radial-gradient(circle at 60% 100%,#ffa436 5%,#cc3d00 94%);
+
+.navbar {
+    background: #cc3d00 radial-gradient(circle at 60% 100%, #ffa436 5%, #cc3d00 94%);
 }
-b{
+
+b {
     margin-left: 15px;
-}
-.fas fa-film{
-    margin-top: 5px;
 }
